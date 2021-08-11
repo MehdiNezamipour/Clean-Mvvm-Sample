@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Clean Mvvm Sample"
 include ':app'
+include ':domain'
+include ':data'
