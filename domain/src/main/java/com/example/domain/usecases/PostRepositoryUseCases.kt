@@ -5,7 +5,6 @@ import javax.inject.Inject
 
 class PostRepositoryUseCases @Inject constructor(private val iPostRepository: IPostRepository) {
 
-    suspend fun getPosts(userId: Int) = iPostRepository.getPosts(userId)
-
+    suspend fun getUserPosts(userId: Int) = iPostRepository.getUserPosts(userId)
 
 }

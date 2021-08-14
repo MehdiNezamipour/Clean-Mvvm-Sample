@@ -5,5 +5,5 @@ import com.example.domain.models.Post
 
 interface IPostRepository {
 
-    suspend fun getPosts(userId: Int): Result<List<Post>>
+    suspend fun getUserPosts(userId: Int): Result<List<Post>>
 }
