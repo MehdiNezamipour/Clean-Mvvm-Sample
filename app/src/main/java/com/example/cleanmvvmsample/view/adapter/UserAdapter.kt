@@ -3,13 +3,21 @@ package com.example.cleanmvvmsample.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cleanmvvmsample.databinding.UserItemLayoutBinding
 import com.example.cleanmvvmsample.models.UserModel
 import javax.inject.Inject
 
-class UserAdapter @Inject constructor(private val users: List<UserModel>) :
-    ListAdapter<UserModel, UserViewHolder>(DiffCallback) {
+class UserAdapter @Inject constructor() :
+    RecyclerView.Adapter<UserViewHolder>() {
+
+    private val users = ArrayList<UserModel>()
+
+    fun setItems(list: List<UserModel>) {
+        users.clear()
+        users.addAll(list)
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -25,6 +33,10 @@ class UserAdapter @Inject constructor(private val users: List<UserModel>) :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(users[position])
+    }
+
+    override fun getItemCount(): Int {
+        return users.size
     }
 
 

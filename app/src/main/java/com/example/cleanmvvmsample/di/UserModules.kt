@@ -8,6 +8,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -25,4 +27,15 @@ class UserModules {
     ): UserDataSource =
         UserDataSource(userService)
 
+    @Provides
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    fun provideUserService(retrofit: Retrofit): UserService {
+        return retrofit.create(UserService::class.java)
+    }
 }
